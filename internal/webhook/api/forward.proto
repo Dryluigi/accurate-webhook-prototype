@@ -1,0 +1,16 @@
+syntax = "proto3";
+package chat;
+
+option go_package = "./pb";
+
+message WebhookForwardData {
+    string payload = 1;
+}
+
+message WebhookForwardResponse {
+    string error = 1;
+}
+
+service WebhookForwardService {
+    rpc Forward(stream WebhookForwardData) returns (stream WebhookForwardResponse) {}
+}

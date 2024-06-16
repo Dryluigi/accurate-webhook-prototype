@@ -17,7 +17,10 @@ func NewWebhookUseCase(requestForwarder webhook.RequestForwarder) webhook.Webhoo
 }
 
 func (uc *webhookUseCase) ForwardRequest(ctx context.Context, payload []entity.AccuratePayload) error {
-	uc.requestForwarder.ForwardRequest(ctx, payload)
+	err := uc.requestForwarder.ForwardRequest(ctx, payload)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
